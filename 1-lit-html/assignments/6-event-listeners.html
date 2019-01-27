@@ -7,6 +7,8 @@
   <script type="module">
     import { html, render } from 'https://unpkg.com/lit-html?module';
 
+    // use @eventname syntax to listen to an event
+    // you can just pass a function to it directly
     const template = html`
       <button @click=${() => console.log('clicked!')}>
         Click me

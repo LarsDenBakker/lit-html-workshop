@@ -8,15 +8,20 @@
     import { html, render } from 'https://unpkg.com/lit-html?module';
     import { until } from 'https://unpkg.com/lit-html/directives/until?module';
 
-    function fetchUsers() {
+    // fetch a todo from a remote API. returns a Promise
+    function fetchTodo() {
       return fetch('https://jsonplaceholder.typicode.com/todos/1')
         .then(response => response.json())
         .then(response => response.title);
     }
 
+    // create a template using the 'until' directive. this is a
+    // special type of function which can handle promises
+    // waits for promises to resolve, and displays a placeholder
+    // value in the meantime
     const template = html`
       <p>
-        Todo nr1 is: ${until(fetchUsers(), 'loading...')}
+        Todo nr1 is: ${until(fetchTodo(), 'loading...')}
       </p>
     `;
 
