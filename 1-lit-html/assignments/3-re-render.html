@@ -8,29 +8,19 @@
     import { html, render } from 'https://unpkg.com/lit-html?module';
 
     // create a function which returns your template
-    function helloWorldTemplate(message, url) {
+    function counterTemplate(i) {
       return html`
-        <a href=${url}>
-          Hello ${message}!
-        </a>
+        <p>The current count is: ${i}</p>
       `;
     }
 
-    // render the template
-    const template1 = helloWorldTemplate('world', '/foo/bar');
-    render(template1, document.body);
+    let i = 0;
 
-    // render the template again after 1sec
-    setTimeout(() => {
-      const template2 = helloWorldTemplate('universe', '/foo/bar');
-      render(template2, document.body);
+    // update the counter and render every second
+    setInterval(() => {
+      const template = counterTemplate(i++);
+      render(template, document.body);
     }, 1000);
-
-    // render the template again after 2sec
-    setTimeout(() => {
-      const template2 = helloWorldTemplate('universe', '/lorem/ipsum');
-      render(template2, document.body);
-    }, 2000);
   </script>
 </head>
 <body>

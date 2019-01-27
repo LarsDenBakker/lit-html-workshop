@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    import { html, render } from 'https://unpkg.com/lit-html?module';
+
+    // because lit-html renders array, you can map the array to an
+    // array of templates to rendered repeated templates
+    function friendsTemplate(users) {
+      return html`
+        <h1>My best friends: </h1>
+
+        <ul>
+          ${users.map(user => html`
+            <li>${user}</li>
+          `)}
+        </ul>
+      `;
+    }
+
+    const template = usersTemplate(['steve', 'bob', 'peter']);
+
+    render(template, document.body);
+  </script>
+</head>
+<body>
+</body>
+</html>

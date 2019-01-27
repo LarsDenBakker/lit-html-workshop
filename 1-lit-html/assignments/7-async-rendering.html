@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    import { html, render } from 'https://unpkg.com/lit-html?module';
+    import { until } from 'https://unpkg.com/lit-html/directives/until?module';
+
+    function fetchUsers() {
+      return fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response => response.json())
+        .then(response => response.title);
+    }
+
+    const template = html`
+      <p>
+        Todo nr1 is: ${until(fetchUsers(), 'loading...')}
+      </p>
+    `;
+
+    render(template, document.body);
+  </script>
+</head>
+<body>
+</body>
+</html>
