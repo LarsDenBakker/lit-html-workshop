@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    import { html, render } from 'https://unpkg.com/lit-html?module';
+
+    // create a function which returns your template
+    function helloWorldTemplate(message, url) {
+      return html`
+        <a href=${url}>
+          Hello ${message}!
+        </a>
+      `;
+    }
+
+    // create an instance of the template for the given variables
+    const template = helloWorldTemplate('world', '/foo/bar');
+
+    // render the template
+    render(template, document.body);
+  </script>
+</head>
+<body>
+</body>
+</html>

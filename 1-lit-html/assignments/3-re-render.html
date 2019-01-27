@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    import { html, render } from 'https://unpkg.com/lit-html?module';
+
+    // create a function which returns your template
+    function helloWorldTemplate(message, url) {
+      return html`
+        <a href=${url}>
+          Hello ${message}!
+        </a>
+      `;
+    }
+
+    // render the template
+    const template1 = helloWorldTemplate('world', '/foo/bar');
+    render(template1, document.body);
+
+    // render the template again after 1sec
+    setTimeout(() => {
+      const template2 = helloWorldTemplate('universe', '/foo/bar');
+      render(template2, document.body);
+    }, 1000);
+
+    // render the template again after 2sec
+    setTimeout(() => {
+      const template2 = helloWorldTemplate('universe', '/lorem/ipsum');
+      render(template2, document.body);
+    }, 2000);
+  </script>
+</head>
+<body>
+</body>
+</html>

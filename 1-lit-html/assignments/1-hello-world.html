@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width">
 
   <script type="module">
+    // import lit-html from the unpkg CDN as a module, it makes this code work anywhere
     import { html, render } from 'https://unpkg.com/lit-html?module';
 
+    // create a HTML template
     const template = html`
       <p>Hello world!</p>
     `;
+
+    // render the template to the DOM. the first parameter is the template to render,
+    // the second parameter is the location to render into. this can be any DOM element
     render(template, document.body);
   </script>
 </head>
