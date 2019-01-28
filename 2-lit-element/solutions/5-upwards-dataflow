@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+    class MyElement extends LitElement {
+      static get properties() {
+        return {
+          articles: { type: Array }
+        };
+      }
+      constructor() {
+        super();
+        this.articles = [];
+      }
+      connectedCallback() {
+        super.connectedCallback();
+        fetch('https://newsapi.org/v2/everything?q=tech&apiKey=<your-api-key>')
+          .then(response => response.json())
+          .then(response => {
+            // we'll need to keep track of some kind of id and read status per article
+            this.articles = response.articles.map((article, i) => ({...article, id: i, read: false}));
+          })
+      }
+
+      _toggleReadStatus(e) {
+        this.articles[e.detail].read = !this.articles[e.detail].read;
+        // when mutating an objects properties, you have to manually call:
+        this.requestUpdate();
+      }
+
+      render() {
+        return html`
+          <ul>
+            ${this.articles.map(article => html`
+              <my-article 
+                .title=${article.title} 
+                .description=${article.description}
+                .read=${article.read}
+                .id=${article.id}
+                @toggled=${this._toggleReadStatus}
+              ></my-article>
+            `)}
+          </ul>
+        `;
+      }
+    }
+    customElements.define('my-element', MyElement);
+
+    class MyArticle extends LitElement {
+      static get properties() {
+        return {
+          title: { type: String },
+          description: { type: String },
+          read: { type: Boolean },
+          id: { type: Number }
+        }
+      }
+
+      // dispatch an event to the parent element
+      _toggleRead() {
+        this.dispatchEvent(new CustomEvent('toggled', { detail: this.id }));   
+      }
+
+      render() {
+        return html`
+          <li>
+            <button @click=${this._toggleRead}>${this.read ? 'read' : 'unread'}</button>
+            <h2>${this.title}</h2>
+            <p>${this.description}</p>
+          </li>
+        `;
+      }
+    }
+    customElements.define('my-article', MyArticle);
+  </script>
+</head>
+
+<body>
+  <my-element></my-element>
+</body>
+</html>
