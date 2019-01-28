@@ -6,6 +6,7 @@
 
   <script type="module">
     import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+
     class MyElement extends LitElement {
       static get properties() {
         return {
@@ -13,12 +14,14 @@
           filter: { type: String }
         };
       }
+
       constructor() {
         super();
         this.articles = [];
         // add a filter
         this.filter = 'all';
       }
+
       connectedCallback() {
         super.connectedCallback();
         fetch('https://newsapi.org/v2/everything?q=tech&apiKey=<your-api-key>')
@@ -38,6 +41,7 @@
           <button @click=${() => this.filter = 'all'}>all</button>
           <button @click=${() => this.filter = 'read'}>read</button>
           <button @click=${() => this.filter = 'unread'}>unread</button>
+
           <ul>
             <!-- apply filter to the array -->
             ${this.articles.filter(article => {
@@ -45,8 +49,8 @@
               if(this.filter === 'unread') return !article.read;
               if(this.filter === 'all') return true;
             }).map(article => html`
-              <my-article 
-                .title=${article.title} 
+              <my-article
+                .title=${article.title}
                 .description=${article.description}
                 .read=${article.read}
                 .id=${article.id}
@@ -57,6 +61,7 @@
         `;
       }
     }
+
     customElements.define('my-element', MyElement);
 
     class MyArticle extends LitElement {
@@ -71,13 +76,16 @@
 
       // dispatch an event to the parent element
       _toggleRead() {
-        this.dispatchEvent(new CustomEvent('toggled', { detail: this.id }));   
+        this.dispatchEvent(new CustomEvent('toggled', { detail: this.id }));
       }
 
       render() {
         return html`
           <li>
-            <button @click=${this._toggleRead}>${this.read ? 'read' : 'unread'}</button>
+            <button @click=${this._toggleRead}>
+              ${this.read ? 'read' : 'unread'}
+            </button>
+
             <h2>${this.title}</h2>
             <p>${this.description}</p>
           </li>
