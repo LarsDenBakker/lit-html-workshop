@@ -1,4 +1,5 @@
 # lit-html workshop
+You can view this project on github pages: https://larsdenbakker.github.io/lit-html-workshop/
 
 In this workshop you will work on assigments. The lit-html assignments are done with the whole group, the lit-element assignments are done individually.
 
@@ -20,6 +21,7 @@ You can work on the assignment through the http://plnkr.co/ link in the top of e
 5. [Upwards data flow](./2-lit-element/solutions/5-upwards-data.html)
 6. [Filter articles](./2-lit-element/solutions/6-filter-articles.html)
 
+## Cheatsheet
 Below are some code samples for quick reference, and some comparisons to how things are in in Polymer.
 Checkout the links below for more in-depth explanations.
 
