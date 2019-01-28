@@ -1,6 +1,4 @@
 # lit-html workshop
-You can view this project on github pages: https://larsdenbakker.github.io/lit-html-workshop/
-
 In this workshop you will work on assigments. The lit-html assignments are done with the whole group, the lit-element assignments are done individually.
 
 You can work on the assignment through the http://plnkr.co/ link in the top of each assignment, or by cloning this repository and running it locally (npm start).
