@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    /**
+     * Assignment 2:
+     *
+     * - Set up your API key at google news (TODO: @Passle add instructions here)
+     * - In the connectedCallback, make an API call to the news API.
+     *   - See below for fetch example
+     *   - For more info: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+     * - Take the title of the first article, and assign it to a property
+     * - Make sure to add the property to the static properties getter
+     * - Render the first article's title in your template
+     */
+
+    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+
+    /**
+     * fetch example:
+     *
+     * fetch('https://newsapi.org/v2/everything/<your-api-key-goes-here>')
+     *   // the response is a stream, we need to parse it as json first
+     *   .then(response => response.json())
+     *   .then(response => {
+     *     // we now have the API response available as an object
+     *     console.log(response.articles[0].title);
+     *   });
+     */
+
+    class MyElement extends LitElement {
+
+    }
+
+    customElements.define('my-element', MyElement);
+  </script>
+</head>
+
+<body>
+</body>
+</html>

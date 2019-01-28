@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+
+    class MyElement extends LitElement {
+      // make sure to add firstArticle as a property, otherwise LitElement won't trigger
+      // a render when the property is set
+      static get properties() {
+        return {
+          firstArticle: { type: String }
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+
+        // fetch data from the API
+        fetch('https://newsapi.org/v2/everything/<your-api-key-goes-here>')
+          // the response is a stream, we need to parse it as json first
+          .then(response => response.json())
+          .then(response => {
+            // assign the response to a property so that LitElement triggers a render
+            this.firstArticle = response.articles[0].title;
+          });
+      }
+
+      // Define the HTML of your element
+      render() {
+        return html`
+          The first article is: ${this.firstArticle}
+        `;
+      }
+    }
+
+    // Register your element
+    customElements.define('my-element', MyElement);
+  </script>
+</head>
+
+<body>
+  <my-element></my-element>
+</body>
+</html>
