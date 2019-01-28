@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    /**
+     * Assignment 4:
+     *
+     * - Make a toggle button to mark an article as read or unread
+     * - Conditionally render wether the article is read on unread
+     * - Tip: see demo below on how to fire a custom event
+     */
+    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+    class MyElement extends LitElement {
+      /**
+       *
+       *  _fireEvent() {
+       *     this.dispatchEvent(new CustomEvent('toggled', { detail: 'toggled event!' }));
+       *  }
+       *
+       *  render() {
+       *    return html`<button @click=${this._fireEvent}>click</button>`;
+       *  }
+       *
+       */
+    }
+    customElements.define('my-element', MyElement);
+  </script>
+</head>
+
+<body>
+</body>
+</html>
