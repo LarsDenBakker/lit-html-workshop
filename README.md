@@ -8,7 +8,7 @@ You can work on the assignment through the http://plnkr.co/ link in the top of e
 2. [Fetch first article](./2-lit-element/assignments/2-fetch-first-article.html)
 3. [Render articles](./2-lit-element/assignments/3-render-articles.html)
 4. [Child component](./2-lit-element/assignments/4-child-component.html)
-5. [Upwards data flow](./2-lit-element/assignments/5-upwards-data.html)
+5. [Upwards data flow](./2-lit-element/assignments/5-upwards-data-flow.html)
 6. [Filter articles](./2-lit-element/assignments/6-filter-articles.html)
 
 ## Solutions
@@ -16,7 +16,7 @@ You can work on the assignment through the http://plnkr.co/ link in the top of e
 2. [Fetch first article](./2-lit-element/solutions/2-fetch-first-article.html)
 3. [Render articles](./2-lit-element/solutions/3-render-articles.html)
 4. [Child component](./2-lit-element/solutions/4-child-component.html)
-5. [Upwards data flow](./2-lit-element/solutions/5-upwards-data.html)
+5. [Upwards data flow](./2-lit-element/solutions/5-upwards-data-flow.html)
 6. [Filter articles](./2-lit-element/solutions/6-filter-articles.html)
 
 ## Cheatsheet
@@ -33,7 +33,6 @@ Checkout the links below for more in-depth explanations.
 - open-wc, docs and guides: https://open-wc.org
 - lit-html github: https://github.com/Polymer/lit-html
 - lit-element github: https://github.com/Polymer/lit-element
-
 
 ## Define a template
 ```javascript
