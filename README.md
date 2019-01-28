@@ -2,6 +2,16 @@
 
 In this workshop you will work on assigments. The lit-html assignments are done with the whole group, the lit-element assignments are done individually.
 
+## Assignments
+You can work on assignment through the http://plnkr.co/ link in the top of each assignment, or by cloning this repository and running it locally (npm start).
+
+1. [Hello world](./2-lit-element/assignments/1-hello-world.html)
+2. [Fetch first article](./2-lit-element/assignments/2-fetch-first-article.html)
+3. [Render articles](./2-lit-element/assignments/3-render-articles.html)
+4. [Child component](./2-lit-element/assignments/4-child-component.html)
+5. [Upwards data flow](./2-lit-element/assignments/5-upwards-data.html)
+6. [Filter articles](./2-lit-element/assignments/6-filter-articles.html)
+
 Below are some code samples for quick reference, and some comparisons to how things are in in Polymer.
 Checkout the links below for more in-depth explanations.
 
