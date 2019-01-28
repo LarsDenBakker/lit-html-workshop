@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    /**
+     * Assignment 1:
+     *
+     * - Create a web component which extends from LitElement
+     * - Implement a render method, which returns a lit-html template
+     * - Register your element using customElements.define
+     * - A your element to the <body> so that it will become visible
+     * - Add a 'static get styles()' and give your element some colors
+     */
+
+    // import LitElement from the unpkg CDN as a module, it makes this code work anywhere
+    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+
+    // Create a class which extends LitElement
+    class MyElement extends LitElement {
+      // Define the styles of your element
+      static get styles() {
+        return css`
+          :host {
+            color: blue;
+          }
+        `;
+      }
+
+      // Define the HTML of your element
+      render() {
+        return html`
+          <p>Hello world!</p>
+        `;
+      }
+    }
+
+    // Register your element
+    customElements.define('my-element', MyElement);
+  </script>
+</head>
+
+<body>
+  <!-- place your element in the body so that it will be rendered by the browser -->
+  <my-element></my-element>
+</body>
+</html>
