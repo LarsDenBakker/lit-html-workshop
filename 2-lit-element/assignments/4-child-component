@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    /**
+     * Assignment 4:
+     *
+     * - Make a new `<my-article>` child component and pass some data to it
+     */
+    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+    class MyElement extends LitElement {
+    }
+    customElements.define('my-element', MyElement);
+  </script>
+</head>
+
+<body>
+</body>
+</html>
