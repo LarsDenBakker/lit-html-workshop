@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+    class MyElement extends LitElement {
+      static get properties() {
+        return {
+          articles: { type: Array }
+        };
+      }
+      constructor() {
+        super();
+        this.articles = [];
+      }
+      connectedCallback() {
+        super.connectedCallback();
+        fetch('https://newsapi.org/v2/everything?q=tech&apiKey=<your-api-key>')
+          .then(response => response.json())
+          .then(response => {
+            this.articles = response.articles;
+          })
+      }
+      render() {
+        return html`
+          <ul>
+            ${this.articles.map(article => html`
+              <!-- use your new element -->
+              <my-article .title=${article.title} .description=${article.description}></my-article>
+            `)}
+          </ul>
+        `;
+      }
+    }
+    customElements.define('my-element', MyElement);
+
+    // define a new element
+    class MyArticle extends LitElement {
+      static get properties() {
+        return {
+          title: { type: String },
+          description: { type: String }
+        }
+      }
+      render() {
+        return html`
+          <li>
+            <h2>${this.title}</h2>
+            <p>${this.description}</p>
+          </li>
+        `;
+      }
+    }
+    customElements.define('my-article', MyArticle);
+  </script>
+</head>
+
+<body>
+  <my-element></my-element>
+</body>
+</html>
