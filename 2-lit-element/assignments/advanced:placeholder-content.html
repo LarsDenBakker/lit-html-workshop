@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    /**
+     * Assignment:
+     * Fetching articles is asynchronous. In this example it might be quite fast, but in a real world
+     * scenario it can take longer. Display some placeholder content while you are making a request.
+     *
+     * - The placeholder content can be anything: a <paper-spinner> or just a 'Loading...' text
+     * - The simplest solution is to add an if statement in your render function. Based on some
+     *   condition, you can return a different template.
+     * - Use the network throttling feature in your chrome dev tools to simulate slower network
+     *
+     * Check out the README.md for reference documentation
+     *
+     * Copy paste into plnkr: http://plnkr.co/edit/DI9312Rn54NuIH7FRzzD?p=preview
+     */
+    import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+
+    class MyElement extends LitElement {
+
+    }
+
+    customElements.define('my-element', MyElement);
+  </script>
+</head>
+
+<body>
+</body>
+</html>

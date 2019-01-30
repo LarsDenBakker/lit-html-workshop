@@ -7,19 +7,27 @@
   <script type="module">
     /**
      * Assignment 5:
+     * Create a toggle button which on click marks the article as 'read'. The button displays 'read' or 'unread' based on the status of the article.
      *
-     * - Make a toggle button to mark an article as read or unread
-     * - Conditionally render wether the article is read on unread
-     * - Tip: see demo below on how to fire a custom event
+     * - Add a 'read' property to each article
+     * - Add a button to the article's template
+     * - On click, toggle the read status of the article
+     * - Based on the read status, display a different text in the button
+     *
+     * Check out the README.md for reference documentation
+     *
+     * Copy paste into plnkr: http://plnkr.co/edit/DI9312Rn54NuIH7FRzzD?p=preview
      */
-    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+    import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+
     class MyElement extends LitElement {
       /**
-       *
+       *  // how to fire an event
        *  _fireEvent() {
        *     this.dispatchEvent(new CustomEvent('toggled', { detail: 'toggled event!' }));
        *  }
        *
+       *  // how to set up an event listener
        *  render() {
        *    return html`<button @click=${this._fireEvent}>click</button>`;
        *  }
@@ -31,6 +39,7 @@
        *
        */
     }
+
     customElements.define('my-element', MyElement);
   </script>
 </head>

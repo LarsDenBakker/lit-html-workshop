@@ -1,23 +1,46 @@
 # lit-html workshop
+[Slides](https://docs.google.com/presentation/d/1KVYiupSAoFyECDwJwxQlJTk8RvSzhg-UKGpZ8-nFm3I)
+
 In this workshop you will work on assigments. The lit-html assignments are done with the whole group, the lit-element assignments are done individually.
 
-You can work on the assignment through the http://plnkr.co/ link in the top of each assignment, or by cloning this repository and running it locally (npm start).
+You can work on the assignment by copy pasting them into http://plnkr.co/edit/DI9312Rn54NuIH7FRzzD?p=preview, or by cloning this repository and running it locally (npm start).
+
+The assignments should be executed in order, one step sets the stage for the next step. When in doubt, ask us or check the solution.
+
+When you are done (or bored) there are advanced assignments which are free to pick in any order.
+
+[News app demo](https://larsdenbakker.github.io/lit-html-workshop/)
 
 ## Assignments
 1. [Hello world](./2-lit-element/assignments/1-hello-world.html)
 2. [Fetch first article](./2-lit-element/assignments/2-fetch-first-article.html)
 3. [Render articles](./2-lit-element/assignments/3-render-articles.html)
 4. [Child component](./2-lit-element/assignments/4-child-component.html)
-5. [Upwards data flow](./2-lit-element/assignments/5-upwards-data-flow.html)
+5. [Read/unread toggle](./2-lit-element/assignments/5-read-toggle.html)
 6. [Filter articles](./2-lit-element/assignments/6-filter-articles.html)
+7. [Styling](./2-lit-element/assignments/7-styling.html)
+8. [Polymer components](./2-lit-element/assignments/8-polymer-components.html)
+9. [Read/unread counter](./2-lit-element/assignments/9-read-unread-counter.html)
+10. [Template function](./2-lit-element/assignments/10-template-function.html)
 
 ## Solutions
 1. [Hello world](./2-lit-element/solutions/1-hello-world.html)
 2. [Fetch first article](./2-lit-element/solutions/2-fetch-first-article.html)
 3. [Render articles](./2-lit-element/solutions/3-render-articles.html)
 4. [Child component](./2-lit-element/solutions/4-child-component.html)
-5. [Upwards data flow](./2-lit-element/solutions/5-upwards-data-flow.html)
+5. [Read/unread toggle](./2-lit-element/solutions/5-read-toggle.html)
 6. [Filter articles](./2-lit-element/solutions/6-filter-articles.html)
+7. [Styling](./2-lit-element/solutions/7-styling.html)
+8. [Polymer components](./2-lit-element/solutions/8-polymer-components.html)
+9. [Read/unread counter](./2-lit-element/solutions/9-read-unread-counter.html)
+10. [Template function](./2-lit-element/solutions/10-template-function.html)
+
+## Advanced assignments
+These assignments have no solution. Pick a topic you are interested in.
+- [Conditional templates](./2-lit-element/assignments/advanced:conditional-templates.html)
+- [Directives](./2-lit-element/assignments/advanced:directives.html)
+- [Placeholder content](./2-lit-element/assignments/advanced:placeholder-content.html)
+- [Shared styles](./2-lit-element/assignments/advanced:shared-styles.html)
 
 ## Cheatsheet
 Below are some code samples for quick reference, and some comparisons to how things are in in Polymer.
@@ -48,11 +71,11 @@ const template = html`
 `;
 ```
 
-## Property binding
+## Property binding (Polymer VS lit-html)
 MyElement has two properties: `users` and `menuItems`
-- Polymer sets a property by default, and you need to kebab-case the name
-- in lit-html you add a . in front of the property name, but keep the camelCased
-name
+- Polymer: change name to kebab-case, wrap in `[[]]`
+- lit-html: use camelCase name, add a . in front, wrap in `${}`
+
 ```javascript
 html`
   <!-- polymer -->
@@ -69,14 +92,14 @@ html`
 `;
 ```
 
-## Attribute binding
+## Attribute binding (Polymer VS lit-html)
 Attributes are set on the HTML element. in general you should set properties and only set attributes
 when you really need to for example to use it in CSS or for some native HTML elements
 
-- lit-html sets an attribute by default,
-- in polymer you need to add a $ behind it
-- for boolean attributes (attributes that should be removed/added based on boolean value) Polymer did
-some hidden magic for you. in lit-html you need to add a ? in front to set this behavior
+- Polymer: like property binding, but add a `$` behind it
+- lit-html: like property binding, but without a `.` in front
+
+- for boolean attributes Polymer did some hidden magic for you. in lit-html you need to add a ? in front to set this behavior. This will add/remove the attribute based on a boolean value.
 ```javascript
 html`
   <!-- polymer -->
@@ -93,9 +116,9 @@ html`
 `;
 ```
 
-## Event listeners
-- in polymer you pass a string, which polymer will try to map to a function which exists on your class
-- in lit-html you pass an actual function which is executed. This function can come from anywhere.
+## Event listeners (Polymer VS lit-html)
+- Polymer: pass a string, polymer will try to find a function by that name your component
+- lit-html: pass (a reference to) the actual function which will be executed. This function can come from anywhere.
 ```javascript
 html`
   <!-- polymer -->

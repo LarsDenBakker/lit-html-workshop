@@ -8,6 +8,14 @@
     import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
 
     class MyElement extends LitElement {
+      static get styles() {
+        return css`
+          :host {
+            display: block;
+          }
+        `;
+      }
+
       static get properties() {
         return {
           articles: { type: Array },
@@ -37,7 +45,6 @@
       }
 
       render() {
-        // apply filter to the array
         const filteredArticles = this.articles.filter(article => {
           if(this.filter === 'read') return article.read;
           if(this.filter === 'unread') return !article.read;
@@ -50,6 +57,7 @@
           <button @click=${() => this.filter = 'unread'}>unread</button>
 
           <ul>
+            <!-- apply filter to the array -->
             ${filteredArticles.map(article => html`
               <my-article
                 .title=${article.title}
@@ -67,6 +75,14 @@
     customElements.define('my-element', MyElement);
 
     class MyArticle extends LitElement {
+      static get styles() {
+        return css`
+          :host {
+            display: block;
+          }
+        `;
+      }
+
       static get properties() {
         return {
           title: { type: String },

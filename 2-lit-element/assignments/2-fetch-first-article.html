@@ -6,23 +6,31 @@
 
   <script type="module">
     /**
-     * Assignment 2:
+     * Assignment 2
+     * Fetch and display the title of the first article from the google news API.
      *
-     * - Set up your API key at google news (TODO: @Passle add instructions here)
+     * - Set up your API key at google news
+     *   - Click the link: https://newsapi.org/ and click 'GET API KEY'
+     *   - Then add the &apiKey=<your-api-key> query param to you request,
+     *   - e.g.: https://newsapi.org/v2/everything?q=<some-topic>&apiKey=<your-api-key-goes-here>
      * - In the connectedCallback, make an API call to the news API.
      *   - See below for fetch example
      *   - For more info: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
      * - Take the title of the first article, and assign it to a property
-     * - Make sure to add the property to the static properties getter
-     * - Render the first article's title in your template
+     * - Add the property to the static properties getter so that LitElement will trigger a render on change
+     * - Display the first article's title in your template
+     *
+     * Check out the README.md for reference documentation
+     *
+     * Copy paste into plnkr: http://plnkr.co/edit/DI9312Rn54NuIH7FRzzD?p=preview
      */
 
-    import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+    import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
 
     /**
      * fetch example:
      *
-     * fetch('https://newsapi.org/v2/everything/<your-api-key-goes-here>')
+     * fetch('https://newsapi.org/v2/everything?q=<some-topic>&apiKey=<your-api-key-goes-here>')
      *   // the response is a stream, we need to parse it as json first
      *   .then(response => response.json())
      *   .then(response => {

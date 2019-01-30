@@ -6,8 +6,54 @@
 
   <script type="module">
     import {LitElement, html, css} from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+    import 'https://unpkg.com/@polymer/paper-button/paper-button.js?module';
+
+    function filterStories(stories, filter){
+      return stories.filter((article) => {
+        if (filter === 'read') return article.read;
+        if (filter === 'unread') return !article.read;
+        if (filter === 'all') return true;
+      });
+    }
+
+    function filterButtonsTemplate(stories, setFilter) {
+      return html`
+        <paper-button raised @click=${() => setFilter('all')}>
+          all
+        </paper-button>
+
+        <paper-button raised @click=${() => setFilter('read')}>
+          read (${filterStories('read').length})
+        </paper-button>
+
+        <paper-button raised @click=${() => setFilter('unread')}>
+          unread (${filterStories('unread').length})
+        </paper-button>
+      `;
+    }
+
+    function articleTemplate(article, read, onClick) {
+      return html`
+        <li>
+          <paper-button @click=${onClick}>
+            ${read ? 'read' : 'unread'}
+          </paper-button>
+
+          <h2>${article.title}</h2>
+          <p>${article.description}</p>
+        </li>
+      `;
+    }
 
     class MyElement extends LitElement {
+      static get styles() {
+        return css`
+          :host {
+            display: block;
+          }
+        `;
+      }
+
       static get properties() {
         return {
           articles: { type: Array },
@@ -37,19 +83,13 @@
       }
 
       render() {
-        // apply filter to the array
-        const filteredArticles = this.articles.filter(article => {
-          if(this.filter === 'read') return article.read;
-          if(this.filter === 'unread') return !article.read;
-          if(this.filter === 'all') return true;
-        });
+        const filteredArticles = filterStories(this.stories, this.filter);
 
         return html`
-          <button @click=${() => this.filter = 'all'}>all</button>
-          <button @click=${() => this.filter = 'read'}>read</button>
-          <button @click=${() => this.filter = 'unread'}>unread</button>
+          ${filterButtonsTemplate(this.stories, (filter) => this.filter = filter)}
 
           <ul>
+            <!-- apply filter to the array -->
             ${filteredArticles.map(article => html`
               <my-article
                 .title=${article.title}
@@ -67,6 +107,14 @@
     customElements.define('my-element', MyElement);
 
     class MyArticle extends LitElement {
+      static get styles() {
+        return css`
+          :host {
+            display: block;
+          }
+        `;
+      }
+
       static get properties() {
         return {
           title: { type: String },
@@ -82,16 +130,7 @@
       }
 
       render() {
-        return html`
-          <li>
-            <button @click=${this._toggleRead}>
-              ${this.read ? 'read' : 'unread'}
-            </button>
-
-            <h2>${this.title}</h2>
-            <p>${this.description}</p>
-          </li>
-        `;
+        return articleTemplate(this.article, this.read, this._toggleRead);
       }
     }
     customElements.define('my-article', MyArticle);
