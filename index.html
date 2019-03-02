@@ -63,7 +63,7 @@
 
     connectedCallback() {
       super.connectedCallback();
-      fetch('https://newsapi.org/v2/everything?q=weather&from=2019-01-01&sortBy=publishedAt&apiKey=0067878edf7d4084a6557032dbd0cab1')
+      fetch('https://newsapi.org/v2/everything?q=weather&from=2019-02-02&sortBy=publishedAt&apiKey=0067878edf7d4084a6557032dbd0cab1')
         .then((r) => r.json())
         .then((r) => {
           this.stories = r.articles.map((article, i) => {
