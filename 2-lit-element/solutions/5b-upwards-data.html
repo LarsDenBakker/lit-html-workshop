@@ -29,6 +29,12 @@
           });
       }
 
+      _toggleReadStatus(e) {
+        this.articles[e.detail].read = !this.articles[e.detail].read;
+        // when mutating an objects properties, you have to manually call:
+        this.requestUpdate();
+      }
+
       render() {
         return html`
           <ul>
@@ -38,6 +44,7 @@
                 .description=${article.description}
                 .read=${article.read}
                 .id=${article.id}
+                @toggled=${this._toggleReadStatus}
               ></my-article>
             `)}
           </ul>
@@ -57,8 +64,9 @@
         }
       }
 
+      // dispatch an event to the parent element
       _toggleRead() {
-        this.read = !this.read;
+        this.dispatchEvent(new CustomEvent('toggled', { detail: this.id }));
       }
 
       render() {

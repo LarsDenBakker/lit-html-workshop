@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    /**
+     * Assignment 5b:
+     * In the last assignment you created a toggle functionality for the my-article component.
+     * Now we're going to lift the 'toggled' state of your child component up to the parent component,
+     * because knowing the state of the article can be useful for filtering.
+     *
+     * We can do this using events. See the example below for more details.
+     *
+     * Check out the README.md for reference documentation
+     *
+     * Copy paste into plnkr: http://plnkr.co/edit/DI9312Rn54NuIH7FRzzD?p=preview
+     */
+    import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.0.0-rc.5?module';
+
+    class MyElement extends LitElement {
+      /**
+       *
+       *  // how to fire an event
+       *  _fireEvent() {
+       *     this.dispatchEvent(new CustomEvent('toggled', { detail: 'toggled event!' }));
+       *  }
+       *
+       *  // how to set up an event listener
+       *  render() {
+       *    return html`<button @click=${this._fireEvent}>click</button>`;
+       *  }
+       *
+       *  ...
+       *
+       *  You can listen to custom events in the parent component like so:
+       *  <my-child-element @toggled=${this.someCallback}></my-child-element>
+       *
+       *
+       */
+    }
+
+    customElements.define('my-element', MyElement);
+  </script>
+</head>
+
+<body>
+</body>
+</html>

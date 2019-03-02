@@ -22,20 +22,9 @@
 
     class MyElement extends LitElement {
       /**
-       *  // how to fire an event
-       *  _fireEvent() {
-       *     this.dispatchEvent(new CustomEvent('toggled', { detail: 'toggled event!' }));
-       *  }
        *
-       *  // how to set up an event listener
-       *  render() {
-       *    return html`<button @click=${this._fireEvent}>click</button>`;
-       *  }
-       *
-       *  ...
-       *
-       *  You can listen to custom events in the parent component like so:
-       *  <my-child-element @toggled=${this.someCallback}></my-child-element>
+       *  You can listen to events on DOM nodes like so:
+       *  <button @click=${this.someCallback}></button>
        *
        */
     }
