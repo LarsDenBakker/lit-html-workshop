@@ -23,24 +23,24 @@
         </paper-button>
 
         <paper-button raised @click=${() => setFilter('read')}>
-          read (${filterStories('read').length})
+          read (${filterStories(stories, 'read').length})
         </paper-button>
 
         <paper-button raised @click=${() => setFilter('unread')}>
-          unread (${filterStories('unread').length})
+          unread (${filterStories(stories, 'unread').length})
         </paper-button>
       `;
     }
 
-    function articleTemplate(article, read, onClick) {
+    function articleTemplate(title, description, read, onClick) {
       return html`
         <li>
           <paper-button @click=${onClick}>
             ${read ? 'read' : 'unread'}
           </paper-button>
 
-          <h2>${article.title}</h2>
-          <p>${article.description}</p>
+          <h2>${title}</h2>
+          <p>${description}</p>
         </li>
       `;
     }
@@ -73,6 +73,7 @@
         fetch('https://newsapi.org/v2/everything?q=tech&apiKey=<your-api-key>')
           .then(response => response.json())
           .then(response => {
+            console.log(response.articles);
             this.articles = response.articles.map((article, i) => ({...article, id: i, read: false}));
           })
       }
@@ -83,10 +84,10 @@
       }
 
       render() {
-        const filteredArticles = filterStories(this.stories, this.filter);
+        const filteredArticles = filterStories(this.articles, this.filter);
 
         return html`
-          ${filterButtonsTemplate(this.stories, (filter) => this.filter = filter)}
+          ${filterButtonsTemplate(this.articles, (filter) => this.filter = filter)}
 
           <ul>
             <!-- apply filter to the array -->
@@ -130,7 +131,7 @@
       }
 
       render() {
-        return articleTemplate(this.article, this.read, this._toggleRead);
+        return articleTemplate(this.title, this.description, this.read, this._toggleRead);
       }
     }
     customElements.define('my-article', MyArticle);
