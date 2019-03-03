@@ -10,7 +10,7 @@
     class MyElement extends LitElement {
       static get properties() {
         return {
-          articles: { type: Array }
+          articles: { type: Array },
         };
       }
 
@@ -23,9 +23,9 @@
         super.connectedCallback();
         fetch('https://newsapi.org/v2/everything?q=tech&apiKey=<your-api-key>')
           .then(response => response.json())
-          .then(response => {
+          .then((response) => {
             // we'll need to keep track of some kind of id and read status per article
-            this.articles = response.articles.map((article, i) => ({...article, id: i, read: false}));
+            this.articles = response.articles.map((article, i) => ({ ...article, id: i, read: false }));
           });
       }
 
@@ -53,8 +53,8 @@
           title: { type: String },
           description: { type: String },
           read: { type: Boolean },
-          id: { type: Number }
-        }
+          id: { type: Number },
+        };
       }
 
       _toggleRead() {

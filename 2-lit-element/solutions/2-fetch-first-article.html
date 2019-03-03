@@ -12,7 +12,7 @@
       // a render when the property is set
       static get properties() {
         return {
-          firstArticle: { type: String }
+          firstArticle: { type: String },
         };
       }
 
@@ -23,7 +23,7 @@
         fetch('https://newsapi.org/v2/everything/<your-api-key-goes-here>')
           // the response is a stream, we need to parse it as json first
           .then(response => response.json())
-          .then(response => {
+          .then((response) => {
             // assign the response to a property so that LitElement triggers a render
             this.firstArticle = response.articles[0].title;
           });

@@ -11,7 +11,7 @@
       static get properties() {
         return {
           articles: { type: Array },
-          filter: { type: String }
+          filter: { type: String },
         };
       }
 
@@ -26,9 +26,9 @@
         super.connectedCallback();
         fetch('https://newsapi.org/v2/everything?q=tech&apiKey=<your-api-key>')
           .then(response => response.json())
-          .then(response => {
-            this.articles = response.articles.map((article, i) => ({...article, id: i, read: false}));
-          })
+          .then((response) => {
+            this.articles = response.articles.map((article, i) => ({ ...article, id: i, read: false }));
+          });
       }
 
       _toggleReadStatus(e) {
@@ -38,16 +38,16 @@
 
       render() {
         // apply filter to the array
-        const filteredArticles = this.articles.filter(article => {
-          if(this.filter === 'read') return article.read;
-          if(this.filter === 'unread') return !article.read;
-          if(this.filter === 'all') return true;
+        const filteredArticles = this.articles.filter((article) => {
+          if (this.filter === 'read') return article.read;
+          if (this.filter === 'unread') return !article.read;
+          if (this.filter === 'all') return true;
         });
 
         return html`
-          <button @click=${() => this.filter = 'all'}>all</button>
-          <button @click=${() => this.filter = 'read'}>read</button>
-          <button @click=${() => this.filter = 'unread'}>unread</button>
+          <button @click=${() => this.filter = 'all' }>all</button>
+          <button @click=${() => this.filter = 'read' }>read</button>
+          <button @click=${() => this.filter = 'unread' }>unread</button>
 
           <ul>
             ${filteredArticles.map(article => html`
@@ -72,8 +72,8 @@
           title: { type: String },
           description: { type: String },
           read: { type: Boolean },
-          id: { type: Number }
-        }
+          id: { type: Number },
+        };
       }
 
       // dispatch an event to the parent element

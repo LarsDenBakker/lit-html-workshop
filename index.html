@@ -17,17 +17,19 @@
   <demo-app></demo-app>
 
 <script type="module">
+  /* eslint-disable */
   import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.0.1?module';
   import 'https://unpkg.com/@polymer/paper-card/paper-card.js?module';
   import 'https://unpkg.com/@polymer/paper-fab/paper-fab.js?module';
   import 'https://unpkg.com/@polymer/paper-button/paper-button.js?module';
   import 'https://unpkg.com/@polymer/iron-icons/iron-icons?module';
+
   class DemoApp extends LitElement {
     static get properties() {
       return {
         stories: { type: Array },
-        filter: { type: String }
-      }
+        filter: { type: String },
+      };
     }
 
     static get styles() {
@@ -51,8 +53,8 @@
             justify-content: center;
             margin-bottom: 20px;
           }
-        `
-      ]
+        `,
+      ];
     }
 
     constructor() {
@@ -64,11 +66,9 @@
     connectedCallback() {
       super.connectedCallback();
       fetch('https://newsapi.org/v2/everything?q=weather&from=2019-02-02&sortBy=publishedAt&apiKey=0067878edf7d4084a6557032dbd0cab1')
-        .then((r) => r.json())
+        .then(r => r.json())
         .then((r) => {
-          this.stories = r.articles.map((article, i) => {
-            return { ...article, id: i, read: false }
-          });
+          this.stories = r.articles.map((article, i) => ({ ...article, id: i, read: false }));
         });
     }
 
@@ -77,11 +77,11 @@
       this.requestUpdate();
     }
 
-    getFilteredStories(filter){
+    getFilteredStories(filter) {
       return this.stories.filter((article) => {
-        if(filter === 'read') return article.read;
-        if(filter === 'unread') return !article.read;
-        if(filter === 'all') return true;
+        if (filter === 'read') return article.read;
+        if (filter === 'unread') return !article.read;
+        if (filter === 'all') return true;
       });
     }
 
@@ -97,20 +97,17 @@
             </header>
           <div class="stories">
             ${this.stories.filter((article) => {
-              if(this.filter === 'read') return article.read;
-              if(this.filter === 'unread') return !article.read;
-              if(this.filter === 'all') return true;
-            }).map((article) => {
-                return html`
-                  <my-article
-                    @toggled=${this._toggleReadStatus}
-                    .read=${article.read}
-                    .title=${article.title}
-                    .description=${article.description}
-                    .id=${article.id}>
-                  </my-article>`;
-              })
-            }
+              if (this.filter === 'read') return article.read;
+              if (this.filter === 'unread') return !article.read;
+              if (this.filter === 'all') return true;
+            }).map(article => html`
+              <my-article
+                @toggled=${this._toggleReadStatus}
+                .read=${article.read}
+                .title=${article.title}
+                .description=${article.description}
+                .id=${article.id}>
+              </my-article>`)}
           </div>
         `;
     }
@@ -124,8 +121,8 @@
         title: { type: String },
         description: { type: String },
         read: { type: Boolean },
-        id: { type: Number }
-      }
+        id: { type: Number },
+      };
     }
 
     static get styles() {
@@ -152,8 +149,8 @@
             align-items: center;
             justify-content: center;
           }
-        `
-      ]
+        `,
+      ];
     }
 
     _toggleRead() {
@@ -166,10 +163,10 @@
           <div class="header">
             <h2>${this.title}</h2>
             <div class="buttons">
-              ${this.read ?
-                html`<paper-fab @click=${this._toggleRead} mini icon="icons:visibility"></paper-fab>` :
-                html`<paper-fab @click=${this._toggleRead} mini icon="icons:visibility-off"></paper-fab>`
-              }
+              ${this.read
+      ? html`<paper-fab @click=${this._toggleRead} mini icon="icons:visibility"></paper-fab>`
+      : html`<paper-fab @click=${this._toggleRead} mini icon="icons:visibility-off"></paper-fab>`
+  }
             </div>
           </div>
           <p>${this.description}</p>

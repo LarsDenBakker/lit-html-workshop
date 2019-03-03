@@ -10,7 +10,7 @@
     class MyElement extends LitElement {
       static get properties() {
         return {
-          articles: { type: Array }
+          articles: { type: Array },
         };
       }
 
@@ -24,7 +24,7 @@
 
         fetch('https://newsapi.org/v2/everything?q=tech&apiKey=<your-api-key>')
           .then(response => response.json())
-          .then(response => {
+          .then((response) => {
             this.articles = response.articles;
           });
       }
@@ -51,8 +51,8 @@
       static get properties() {
         return {
           title: { type: String },
-          description: { type: String }
-        }
+          description: { type: String },
+        };
       }
 
       render() {

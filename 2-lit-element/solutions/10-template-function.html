@@ -8,7 +8,7 @@
     import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.0.1?module';
     import 'https://unpkg.com/@polymer/paper-button/paper-button.js?module';
 
-    function filterStories(stories, filter){
+    function filterStories(stories, filter) {
       return stories.filter((article) => {
         if (filter === 'read') return article.read;
         if (filter === 'unread') return !article.read;
@@ -57,7 +57,7 @@
       static get properties() {
         return {
           articles: { type: Array },
-          filter: { type: String }
+          filter: { type: String },
         };
       }
 
@@ -72,10 +72,10 @@
         super.connectedCallback();
         fetch('https://newsapi.org/v2/everything?q=tech&apiKey=<your-api-key>')
           .then(response => response.json())
-          .then(response => {
+          .then((response) => {
             console.log(response.articles);
-            this.articles = response.articles.map((article, i) => ({...article, id: i, read: false}));
-          })
+            this.articles = response.articles.map((article, i) => ({ ...article, id: i, read: false }));
+          });
       }
 
       _toggleReadStatus(e) {
@@ -87,7 +87,7 @@
         const filteredArticles = filterStories(this.articles, this.filter);
 
         return html`
-          ${filterButtonsTemplate(this.articles, (filter) => this.filter = filter)}
+          ${filterButtonsTemplate(this.articles, filter => this.filter = filter)}
 
           <ul>
             <!-- apply filter to the array -->
@@ -121,8 +121,8 @@
           title: { type: String },
           description: { type: String },
           read: { type: Boolean },
-          id: { type: Number }
-        }
+          id: { type: Number },
+        };
       }
 
       // dispatch an event to the parent element

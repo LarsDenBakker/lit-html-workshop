@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server -o"
+    "start": "http-server -o",
+    "lint:eslint": "eslint --ext .js,.html .",
+    "format:eslint": "eslint --ext .js,.html . --fix"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,8 @@
   },
   "homepage": "https://github.com/LarsDenBakker/lit-html-workshop#readme",
   "devDependencies": {
+    "@open-wc/eslint-config": "^0.3.0",
+    "eslint-plugin-lit": "^0.6.0",
     "http-server": "^0.11.1"
   }
 }

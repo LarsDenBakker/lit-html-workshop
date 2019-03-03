@@ -248,3 +248,13 @@ class MyElement extends LitElement {
 
 customElements.define('my-element', MyElement);
 ```
+
+## Linting
+
+This repo comes with the open-wc recommended eslint configuration and `eslint-plugin-lit` and `eslint-plugin-wc` installed. If you're using vscode you may need to add:
+
+```
+"eslint.validate": ["html"]
+```
+
+To your `settings.json`.
