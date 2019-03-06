@@ -20,7 +20,7 @@
         super.connectedCallback();
 
         // fetch data from the API
-        fetch('https://newsapi.org/v2/everything/<your-api-key-goes-here>')
+        fetch('https://newsapi.org/v2/everything?q=<some-topic>&apiKey=<your-api-key-goes-here>')
           // the response is a stream, we need to parse it as json first
           .then(response => response.json())
           .then((response) => {
