@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <script type="module">
+    import { LitElement, html, css } from 'https://unpkg.com/lit-element@2.0.1?module';
+
+    class MyElement extends LitElement {
+      static get properties() {
+        return {
+          articles: { type: Array },
+        };
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        fetch('https://newsapi.org/v2/everything?q=tech&apiKey=0067878edf7d4084a6557032dbd0cab1')
+          .then(response => response.json())
+          .then((response) => {
+            this.articles = response.articles;
+          });
+      }
+
+      render() {
+        return html`
+          <ul>
+            ${this.articles && this.articles.map(article => html`
+              <my-article
+                .title=${article.title}
+                .description=${article.description}
+                .read=${article.read}
+                .onRead=${() => {
+                  article.read = !!!article.read;
+                  this.requestUpdate();
+                }}
+              ></my-article>
+            `)}
+          </ul>
+        `;
+      }
+    }
+
+    customElements.define('my-element', MyElement);
+
+    class MyArticle extends LitElement {
+      static get properties() {
+        return {
+          title: { type: String },
+          description: { type: String },
+          read: { type: Boolean },
+          onRead: { type: Function },
+        };
+      }
+
+      render() {
+        return html`
+          <li>
+            <button @click=${this.onRead}>
+              ${this.read ? 'read' : 'unread'}
+            </button>
+
+            <h2>${this.title}</h2>
+            <p>${this.description}</p>
+          </li>
+        `;
+      }
+    }
+
+    customElements.define('my-article', MyArticle);
+  </script>
+</head>
+
+<body>
+  <my-element></my-element>
+</body>
+</html>
