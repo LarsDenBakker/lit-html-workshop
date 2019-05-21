@@ -62,11 +62,11 @@
           </paper-button>
 
           <paper-button raised @click=${() => this.filter = 'read'}>
-            read (${filterStories('read').length})
+            read (${filterStories(this.articles, 'read').length})
           </paper-button>
 
           <paper-button raised @click=${() => this.filter = 'unread'}>
-            unread (${filterStories('unread').length})
+            unread (${filterStories(this.articles, 'unread').length})
           </paper-button>
 
           <ul>
