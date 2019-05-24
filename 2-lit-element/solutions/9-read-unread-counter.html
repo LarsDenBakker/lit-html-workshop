@@ -54,7 +54,7 @@
       }
 
       render() {
-        const filteredArticles = filterStories(this.stories, this.filter);
+        const filteredArticles = filterStories(this.articles, this.filter);
 
         return html`
           <paper-button raised @click=${() => this.filter = 'all'}>
