@@ -2,7 +2,7 @@
 
 ## Define a component:
 
-Polymer required a static `is` field, `LitElement` doesn't need it.
+Polymer requires a static `is` field, `LitElement` doesn't need it.
 
 Polymer:
 ```javascript
