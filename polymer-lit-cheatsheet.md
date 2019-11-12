@@ -51,9 +51,9 @@ Polymer 2:
 
 Polymer 3:
 ```js
-import { Element, html } from '@polymer/element';
+import { PolymerElement, html } from '@polymer/element';
 
-class MyElement extends Element {
+class MyElement extends PolymerElement {
   static get is() {
     return 'my-element';
   }
